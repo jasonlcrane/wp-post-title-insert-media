@@ -12,9 +12,11 @@
 add_filter('media_view_strings', 'media_view_strings');
 
 function media_view_strings( $strings ) {
-	global $post;
-	if (!empty($post->post_title) || $post->post_title != '') {
-		$strings['insertMediaTitle'] = __( 'Insert Media into ' . $post->post_title, 'insert_post_title' );
+	global $post, $pagenow;
+	if ($pagenow != 'upload.php') {
+		if (!empty($post->post_title) || $post->post_title != '') {
+			$strings['insertMediaTitle'] = __( 'Insert Media into ' . $post->post_title, 'insert_post_title' );
+		}
 	}
 	return $strings;
 }
